@@ -9,4 +9,4 @@
  * Main module of the application.
  */
 angular
-  .module('angularNodeTokenApp', ['ui.router']);
+  .module('angularNodeTokenApp', ['ui.router', 'ngAnimate']);
