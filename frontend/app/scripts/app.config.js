@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularNodeTokenApp').config(function($urlRouterProvider, $stateProvider, $httpProvider){
+angular.module('angularNodeTokenApp').config(function($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL){
 
   $urlRouterProvider.otherwise('/');
 
@@ -33,6 +33,19 @@ angular.module('angularNodeTokenApp').config(function($urlRouterProvider, $state
     url: '/logout',
     controller: 'LogoutCtrl'
   });
+
+  $authProvider.loginUrl = API_URL + 'login';
+  $authProvider.signupUrl = API_URL + 'register';
+
+  $authProvider.google({
+    clientId: '163315848451-usfkboqhaj9h3alsfp5ntk9j77jtsju6.apps.googleusercontent.com',
+    url: API_URL + 'auth/google'
+  })
+
+  $authProvider.facebook({
+    clientId: '1806877422964808',
+    url: API_URL + 'auth/facebook'
+  })
 
   $httpProvider.interceptors.push('authInterceptor');
 })

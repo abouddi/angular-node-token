@@ -1,15 +1,19 @@
 'use strict';
 
-angular.module('angularNodeTokenApp').controller('LoginCtrl', function($scope, alert, auth) {
+angular.module('angularNodeTokenApp').controller('LoginCtrl', function($scope, alert, auth, $auth, $state) {
   $scope.submit = function() {
-    auth.login($scope.email, $scope.password)
-    .then(function(res) {
+    $auth.login({
+      email: $scope.email,
+      password: $scope.password
+    }).then(function(res) {
+      $state.go('main');
       alert('success', 'Welcome', 'Thanks for coming back, ' + res.data.user.email + '!');
-    }, handleError);
+    }).catch(handleError);
   };
 
-  $scope.google = function() {
-    auth.googleAuth().then(function(res) {
+  $scope.authenticate = function(provider) {
+    $auth.authenticate(provider).then(function(res) {
+      $state.go('main');
       alert('success', 'Welcome', 'Thanks for coming back, ' + res.data.user.displayName + '!');
     }, handleError);
   }
