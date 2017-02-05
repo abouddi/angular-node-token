@@ -7,7 +7,13 @@ angular.module('angularNodeTokenApp').controller('LoginCtrl', function($scope, a
       password: $scope.password
     }).then(function(res) {
       $state.go('main');
-      alert('success', 'Welcome', 'Thanks for coming back, ' + res.data.user.email + '!');
+
+      var message = 'Thanks for coming back, ' + res.data.user.email + '!';
+      if (!res.data.user.active) {
+        message = 'Just a reminder, please active your account soon :)';
+      }
+
+      alert('success', 'Welcome', message);
     }).catch(handleError);
   };
 
