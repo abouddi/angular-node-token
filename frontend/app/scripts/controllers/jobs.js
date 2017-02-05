@@ -11,6 +11,7 @@ angular.module('angularNodeTokenApp')
     .then(function successCallback(response) {
       $scope.jobs = response.data;
     }, function errorCallback(err) {
-      alert('warning', "Unable to get jobs", err.message);
+      console.log(err);
+      alert('warning', "Unable to get jobs", err.statusText);
     });
   });

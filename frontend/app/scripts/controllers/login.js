@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularNodeTokenApp').controller('LoginCtrl', function($scope, alert, auth, $auth, $state) {
+angular.module('angularNodeTokenApp').controller('LoginCtrl', function($scope, alert, $auth, $state) {
   $scope.submit = function() {
     $auth.login({
       email: $scope.email,
@@ -25,6 +25,6 @@ angular.module('angularNodeTokenApp').controller('LoginCtrl', function($scope, a
   }
 
   function handleError(err) {
-    alert('warning', 'Something went wrong :(', err.message);
+    alert('warning', 'Something went wrong :(', err.statusText);
   }
 });
